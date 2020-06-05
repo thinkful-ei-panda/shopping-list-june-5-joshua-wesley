@@ -42,16 +42,12 @@ const render = function () {
   $('.js-shopping-list').html(shoppingListItemsString);
 };
 
-const addItemToShoppingList = function (itemName) {
-  store.items.push({ id: cuid(), name: itemName, checked: false });
-};
-
 const handleNewItemSubmit = function () {
   $('#js-shopping-list-form').submit(function (event) {
     event.preventDefault();
     const newItemName = $('.js-shopping-list-entry').val();
     $('.js-shopping-list-entry').val('');
-    addItemToShoppingList(newItemName);
+    store.addItem(newItemName);
     render();
   });
 };
@@ -64,7 +60,7 @@ const toggleCheckedForListItem = function (id) {
 const handleItemCheckClicked = function () {
   $('.js-shopping-list').on('click', '.js-item-toggle', event => {
     const id = getItemIdFromElement(event.currentTarget);
-    toggleCheckedForListItem(id);
+    store.findAndToggleChecked(id);
     render();
   });
 };
@@ -124,7 +120,7 @@ const handleEditShoppingItemSubmit = function () {
     event.preventDefault();
     const id = getItemIdFromElement(event.currentTarget);
     const itemName = $(event.currentTarget).find('.shopping-item').val();
-    editListItemName(id, itemName);
+    store.findAndUpdateName(id, itemName);
     render();
   });
 };

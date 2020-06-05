@@ -1,4 +1,5 @@
 let validateName = function (name){
+  console.log('validate');
   if (typeof (name) === 'undefined' || (name) === '') {
     throw new TypeError ('Name must not be blank');
   }

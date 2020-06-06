@@ -18,8 +18,8 @@ let addItem=function(name){
 };
 
 let findAndToggleChecked= function (id){
-  const item=this.findById(id);
-  item.checked=!(item.checked);    
+  const listItem=findById(id);
+  listItem.checked=!(listItem.checked);    
 };
 
 let findAndUpdateName= function (id,newName){
@@ -32,6 +32,10 @@ let findAndUpdateName= function (id,newName){
   }
 };
 
+let findAndDelete= function (id){
+  const listItem=this.findById(id);
+  this.items=this.items.filter(object=>object.id!==listItem.id);
+};
 
 export default{
   items,
@@ -39,5 +43,6 @@ export default{
   findById,
   addItem,
   findAndToggleChecked,
-  findAndUpdateName
+  findAndUpdateName,
+  findAndDelete
 };

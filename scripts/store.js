@@ -10,16 +10,15 @@ let findById=function(id){
 let addItem=function(name){
   try{
     item.validateName(name);
-    console.log(name)
     const listItem=item.create(name);
-    this.items.push(listItem);
+    items.push(listItem);
   }catch(e){
     console.log(`Cannot add item: ${e.message}`);
   }
 };
 
 let findAndToggleChecked= function (id){
-  const listItem=findById(id);
+  const listItem=findById(id);  
   listItem.checked=!(listItem.checked);    
 };
 
@@ -35,8 +34,8 @@ let findAndUpdateName= function (id,newName){
 
 
 let findAndDelete= function (id){
-  const listItem=this.findById(id);
-  this.items=this.items.filter(object=>object.id!==listItem.id);
+  const index=items.indexOf(object=>object.id!==id);
+  items.splice(index,1);
 };
 
 

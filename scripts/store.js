@@ -11,21 +11,27 @@ let addItem=function(name){
   try{
     item.validateName(name);
     const listItem=item.create(name);
-    items.push(listItem);
+    this.items.push(listItem);
   }catch(e){
     console.log(`Cannot add item: ${e.message}`);
   }
 };
 
 let findAndToggleChecked= function (id){
+  console.log(id);
   const listItem=findById(id);  
-  listItem.checked=!(listItem.checked);    
+  console.log(this.items,id);
+  for(let i=0; i<this.items.length;i++){
+    if(this.items[i].id===listItem.id){
+      this.items[i].checked=!(this.items[i].checked);
+    }
+  }  
 };
 
 let findAndUpdateName= function (id,newName){
   try{
     item.validateName(newName);
-    const listItem=this.findById(id);
+    const listItem=findById(id);
     listItem.name = newName;
   }catch(e){
     console.log(`Cannot update name: ${e.message}`);
@@ -34,8 +40,10 @@ let findAndUpdateName= function (id,newName){
 
 
 let findAndDelete= function (id){
-  const index=items.indexOf(object=>object.id!==id);
-  items.splice(index,1);
+  const filteredItems=this.items.filter( (object)=>{
+    return object.id!==id;
+  });
+  this.items = filteredItems;
 };
 
 

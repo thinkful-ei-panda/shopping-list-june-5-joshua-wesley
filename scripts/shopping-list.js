@@ -62,6 +62,7 @@ const handleItemCheckClicked = function () {
 };
 
 const getItemIdFromElement = function (item) {
+  console.log($(item).closest('.js-item-element').data('item-id'));
   return $(item)
     .closest('.js-item-element')
     .data('item-id');

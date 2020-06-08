@@ -4,7 +4,7 @@ let items= [];
 let hideCheckedItems= false;
 
 let findById=function(id){
-  return items.find(object=>object.id===id);
+  return this.items.find(object=>object.id===id);
 };
 
 let addItem=function(name){
@@ -19,7 +19,7 @@ let addItem=function(name){
 
 let findAndToggleChecked= function (id){
   console.log(id);
-  const listItem=findById(id);  
+  const listItem=this.findById(id);  
   console.log(this.items,id);
   for(let i=0; i<this.items.length;i++){
     if(this.items[i].id===listItem.id){
@@ -31,7 +31,7 @@ let findAndToggleChecked= function (id){
 let findAndUpdateName= function (id,newName){
   try{
     item.validateName(newName);
-    const listItem=findById(id);
+    const listItem=this.findById(id);
     listItem.name = newName;
   }catch(e){
     console.log(`Cannot update name: ${e.message}`);
